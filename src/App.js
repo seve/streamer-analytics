@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios'
+import queryString from 'query-string'
 import './App.css';
 
 class App extends Component {
@@ -16,7 +17,12 @@ class App extends Component {
   
   // GET REQUEST FOR USER DATA
   componentDidMount = () => {
-    axios.get('https://api.twitch.tv/helix/users')
+    axios.get('https://api.twitch.tv/helix/users', {
+      // SENDING CLIENT ID TOKEN TO CHECK FOR AUTHENTICATION
+      headers: {
+        header1: `Authorization: OAuth ${queryString.parse(document.location.hash.access).access_token}`
+      } 
+    })
       .then((response) => {
         this.setState({
           userId: response.id,
@@ -25,8 +31,6 @@ class App extends Component {
         })
       })
   }
-
-  axios.get('')
   
   render() {
     return (
