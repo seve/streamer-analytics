@@ -4,7 +4,6 @@ import axios from 'axios'
 import './App.css';
 
 class App extends Component {
-
   constructor(props) {
     super(props)
   
@@ -15,7 +14,7 @@ class App extends Component {
     }
   }
   
-
+  // GET REQUEST FOR USER DATA
   componentDidMount = () => {
     axios.get('https://api.twitch.tv/helix/users')
       .then((response) => {
@@ -26,6 +25,8 @@ class App extends Component {
         })
       })
   }
+
+  axios.get('')
   
   render() {
     return (
