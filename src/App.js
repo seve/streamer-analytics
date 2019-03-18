@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios'
 import queryString from 'query-string'
+import dotenv from 'dotenv'
 import './App.css';
+dotenv.config()
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +50,7 @@ class App extends Component {
           >
             Learn React
           </a>
-          <a href="https://id.twitch.tv/oauth2/authorize?client_id=lk9hyx24834i7j25guphvmkwvgp86s&redirect_uri=https://c34b75e4.ngrok.io&response_type=token&scope=channel:read:subscriptions">AUTH</a>
+          <a href={`https://id.twitch.tv/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`}>AUTH</a>
           <h1>User Id: {this.state.userId}</h1>
         </header>
       </div>
