@@ -4,8 +4,8 @@ import axios from 'axios'
 import queryString from 'query-string'
 import './App.css';
 
-const CLIENT_ID='sv7qodeq1ii9rnpnk4jzs5tzmvh036'
-const REDIRECT_URI='https://c4b2d3cf.ngrok.io'
+const CLIENT_ID='lk9hyx24834i7j25guphvmkwvgp86s'
+const REDIRECT_URI='http://27dd729e.ngrok.io'
 
 
 class App extends Component {
@@ -29,11 +29,16 @@ class App extends Component {
       
     })
       .then((response) => {
+      if(response){
         this.setState({
           userId: response.data.data[0].id,
-          displayName: response.display_name,
-          profileImage: response.profile_image
+          displayName: response.data.data[0].display_name,
+          profileImage: response.data.data[0].profile_image_url
         })
+      }
+      }).catch((err) => {
+        console.log(err);
+        
       })
   }
   
@@ -41,7 +46,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+
+          {this.state.profileImage !== '' ? (<img src={this.state.profileImage} className="App-logo" />):(<img src={logo} className="App-logo" alt="logo" />)}
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
