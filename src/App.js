@@ -62,7 +62,7 @@ class App extends Component {
     }
 
     await getUserData();
-    getSubscribers();
+    await getSubscribers();
   }
   
   render() {
