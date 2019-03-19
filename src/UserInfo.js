@@ -1,8 +1,7 @@
 import React from 'react'
 import logo from './logo.svg'
+import {CLIENT_ID, REDIRECT_URI} from './clientInfo'
 
-const CLIENT_ID='lk9hyx24834i7j25guphvmkwvgp86s'
-const REDIRECT_URI='http://27dd729e.ngrok.io'
 
 export default function UserInfo(props) {
   return (
