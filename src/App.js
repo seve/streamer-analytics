@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios'
 import queryString from 'query-string'
-import dotenv from 'dotenv'
 import './App.css';
-dotenv.config()
+
+const CLIENT_ID='sv7qodeq1ii9rnpnk4jzs5tzmvh036'
+const REDIRECT_URI='https://c4b2d3cf.ngrok.io'
+
 
 class App extends Component {
   constructor(props) {
@@ -22,12 +24,13 @@ class App extends Component {
     axios.get('https://api.twitch.tv/helix/users', {
       // SENDING CLIENT ID TOKEN TO CHECK FOR AUTHENTICATION
       headers: {
-        header1: `Authorization: OAuth ${queryString.parse(document.location.hash.access).access_token}`
-      } 
+        Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
+      }
+      
     })
       .then((response) => {
         this.setState({
-          userId: response.id,
+          userId: response.data.data[0].id,
           displayName: response.display_name,
           profileImage: response.profile_image
         })
@@ -50,7 +53,8 @@ class App extends Component {
           >
             Learn React
           </a>
-          <a href={`https://id.twitch.tv/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`}>AUTH</a>
+          <a href={`https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`}>AUTH</a>
+          <h1>test{CLIENT_ID}</h1>
           <h1>User Id: {this.state.userId}</h1>
         </header>
       </div>
