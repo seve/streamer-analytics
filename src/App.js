@@ -4,8 +4,8 @@ import axios from 'axios'
 import queryString from 'query-string'
 import './App.css';
 
-const CLIENT_ID='lk9hyx24834i7j25guphvmkwvgp86s'
-const REDIRECT_URI='http://27dd729e.ngrok.io'
+const CLIENT_ID='sv7qodeq1ii9rnpnk4jzs5tzmvh036'
+const REDIRECT_URI='http://736e6d02.ngrok.io'
 
 
 class App extends Component {
@@ -43,20 +43,26 @@ class App extends Component {
         console.log(err);
         
       })
-
-      // GET: SUBSCRIBER COUNT
-      // NEW TWITCH API (MARCH 2019)
-      axios.get(`https://api.twitch.tv/helix/subscriptions`, {
-        headers: {
-          Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
-        }
-      })
-        .then((response) => {
-          if(response){
-            console.log(response)
-            return response 
+      .then((hi) => {
+        // GET: SUBSCRIBER COUNT
+        // NEW TWITCH API (MARCH 2019)
+        axios.get(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
+          headers: {
+            Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
           }
         })
+          .then((response) => {
+            if(response){
+              console.log("hello")
+              console.log(response)
+              return response 
+            }
+          }).catch((err) => {
+            console.log(err)
+          })
+        })
+
+      
   }
   
   render() {
