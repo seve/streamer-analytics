@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios'
 import queryString from 'query-string'
 import './App.css';
 
-const CLIENT_ID='lk9hyx24834i7j25guphvmkwvgp86s'
-const REDIRECT_URI='http://27dd729e.ngrok.io'
+import UserInfo from './UserInfo'
+
+
 
 
 class App extends Component {
@@ -46,21 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-
-          {this.state.profileImage !== '' ? (<img src={this.state.profileImage} className="App-logo" />):(<img src={logo} className="App-logo" alt="logo" />)}
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <a href={`https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`}>AUTH</a>
-          <h1>test{CLIENT_ID}</h1>
+          <UserInfo {... this.state} />
           <h1>User Id: {this.state.userId}</h1>
         </header>
       </div>
