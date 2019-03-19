@@ -23,6 +23,7 @@ class App extends Component {
   componentDidMount = () => {
     axios.get('https://api.twitch.tv/helix/users', {
       // SENDING CLIENT ID TOKEN TO CHECK FOR AUTHENTICATION
+      // HEADER AUTHORISATION WILL BE REQUIRED FOR ALL GET REQUESTS
       headers: {
         Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
       }
