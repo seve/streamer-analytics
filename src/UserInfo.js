@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from './logo.svg'
-import {CLIENT_ID, REDIRECT_URI} from './clientInfo'
+import {CLIENT_ID, REDIRECT_URI} from './clientinfo'
 
 
 export default function UserInfo(props) {
