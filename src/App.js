@@ -19,10 +19,13 @@ class App extends Component {
     }
   }
   
-  // GET REQUEST FOR USER DATA
+  
   componentDidMount = () => {
+    // GET: USER DATA
+    // NEW TWITCH API (MARCH 2019)
     axios.get('https://api.twitch.tv/helix/users', {
       // SENDING CLIENT ID TOKEN TO CHECK FOR AUTHENTICATION
+      // HEADER AUTHORISATION WILL BE REQUIRED FOR ALL GET REQUESTS
       headers: {
         Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
       }
@@ -40,6 +43,26 @@ class App extends Component {
         console.log(err);
         
       })
+      .then((hi) => {
+        // GET: SUBSCRIBER COUNT
+        // NEW TWITCH API (MARCH 2019)
+        axios.get(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
+          headers: {
+            Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
+          }
+        })
+          .then((response) => {
+            if(response){
+              console.log("hello")
+              console.log(response)
+              return response 
+            }
+          }).catch((err) => {
+            console.log(err)
+          })
+        })
+
+      
   }
   
   render() {
