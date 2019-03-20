@@ -12,11 +12,6 @@ export default function UserInfo(props) {
     width: 200px;
     margin-top: 24px;
   `
-  const Anchor = styled.a`
-    text-decoration: none;
-    color: white;
-    
-  `
   const Div = styled.div`
     display: flex;
     flex-direction: column;
@@ -31,8 +26,27 @@ export default function UserInfo(props) {
   `
 
   const Name = styled.h2`
-    margin: 16px 0px;
+  margin: 16px 0px;
   `
+
+  const Anchor = styled.a`
+  margin: 16px;
+  text-decoration: none;
+  color: #495264;
+  background: #dddddd;
+  border-radius: 12px;
+  width: 45%;
+  padding: 4px;
+  transition: 700ms;
+  :hover {
+    background: #ffffff;
+    -webkit-box-shadow: 0px 9px 15px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 9px 15px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 9px 15px 1px rgba(0,0,0,0.75);
+  }
+  `
+
+  
   return (
     <Div>
       <Image src={props.profileImage ? props.profileImage : logo} className="profile-image" alt="profile"/>
