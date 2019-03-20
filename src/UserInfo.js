@@ -14,6 +14,8 @@ export default function UserInfo(props) {
   `
   const Anchor = styled.a`
     text-decoration: none;
+    color: white;
+    
   `
   const Div = styled.div`
     display: flex;
@@ -32,10 +34,9 @@ export default function UserInfo(props) {
     margin: 16px 0px;
   `
   return (
-    
     <Div>
       <Image src={props.profileImage ? props.profileImage : logo} className="profile-image" alt="profile"/>
-    {props.userId !== '' ?  
+    {props.userId ?  
       (<Name>{props.displayName}</Name>) 
       : (<Anchor href={`https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`}>Log In</Anchor>)}
     </Div>
