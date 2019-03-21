@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
+
 import UserInfo from './UserInfo';
+import SubscriberChart from './SubscriberChart'
 import './App.css';
 
 class App extends Component {
@@ -38,6 +40,11 @@ class App extends Component {
         }
       } catch(error){
         console.log(error);
+        this.setState({
+          userId: 123,
+          displayName: 'test',
+          profileImage: ''
+        })
       }
     }
 
@@ -45,14 +52,14 @@ class App extends Component {
     // NEW TWITCH API (MARCH 2019)
     const getSubscribers= async () => {
       try {
-        let subscribers = await axios.get(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
-          headers: {
-            Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
+        // let subscribers = await axios.get(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
+        let subscribers = await axios.get(`http://1d86d3d2.ngrok.io/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
+        headers: {
+            // Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
           }
         })
 
         if (subscribers){
-          console.log("hello")
           console.log(subscribers)
           return subscribers 
         }
@@ -62,7 +69,10 @@ class App extends Component {
     }
 
     await getUserData();
-    await getSubscribers();
+
+    setInterval(async () => {
+      await getSubscribers();
+    }, 1000 * 60 * 5);
   }
   
   render() {
@@ -70,7 +80,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <UserInfo {... this.state} />
-          <h1>User Id: {this.state.userId}</h1>
+          <SubscriberChart />
         </header>
       </div>
     );
