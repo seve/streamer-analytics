@@ -1,2 +1,2 @@
-export const CLIENT_ID='lk9hyx24834i7j25guphvmkwvgp86s'
-export const REDIRECT_URI='http://27dd729e.ngrok.io'
+export const CLIENT_ID='sv7qodeq1ii9rnpnk4jzs5tzmvh036'
+export const REDIRECT_URI='http://5b05b72c.ngrok.io'

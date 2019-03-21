@@ -12,6 +12,11 @@ A platform for streamers to view subscriber informaton. Things such as sub count
 1. Entire front-end React app.
 2. All data acquired from queries (Twitch API)
 
+## Testing
+
+A mock API was used to test for subscriber count. The source code can be found [here](https://github.com/seve/mock-twitch-api). 
+Live URL: https://ts-analytica-test.herokuapp.com/
+
 ## Contributors
 - [@seve](https://github.com/seve)
 - [@ThomasLee94](https://github.com/ThomasLee94)
