@@ -15,6 +15,7 @@ A platform for streamers to view subscriber informaton. Things such as sub count
 ## Testing
 
 A mock API was used to test for subscriber count. The source code can be found [here](https://github.com/seve/mock-twitch-api). 
+
 Live URL: https://ts-analytica-test.herokuapp.com/
 
 ## Contributors
