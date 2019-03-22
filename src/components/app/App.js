@@ -1,10 +1,16 @@
+//
+// ─── MAIN APP ───────────────────────────────────────────────────────────────────
+//
+
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
-
-import UserInfo from './UserInfo';
-import SubscriberChart from './SubscriberChart'
+import UserInfo from '../../UserInfo';
+import SubscriberChart from '../SubscriberChart'
 import './App.css';
+
+import { connect } from 'react-redux'
 
 class App extends Component {
   constructor(props) {
@@ -52,10 +58,9 @@ class App extends Component {
     // NEW TWITCH API (MARCH 2019)
     const getSubscribers= async () => {
       try {
-        // let subscribers = await axios.get(`https://api.twitch.tv/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
-        let subscribers = await axios.get(`http://1d86d3d2.ngrok.io/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
+          let subscribers = await axios.get(`https://ts-analytica-test.herokuapp.com/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
         headers: {
-            // Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
+            Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
           }
         })
 
@@ -87,4 +92,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapToProps, mapDispatchToProps)(App);
