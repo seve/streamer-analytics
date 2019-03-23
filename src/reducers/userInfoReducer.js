@@ -1,19 +1,14 @@
-import Axios from 'axios';
-import { CLIENT_ID, REDIRECT_URI } from '../clientinfo'
 
-import { LOGIN, GET_USER } from '../actions/types'
+import { FETCH_USER } from '../actions/types'
 
 
 const initialState = {
-  id: '',
-  displayName: '',
-  profileImage: '',
-  accessToken: ''
+  infro: {}
 }
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_USER:
+    case FETCH_USER:
       return {
         ...state,
         info: payload

@@ -1,8 +1,13 @@
+//
+// ─── USER ACTION ────────────────────────────────────────────────────────────────
+//
+
+
 import axios from 'axios';
 import queryString from 'query-string'
 
-import { LOGIN, GET_USER } from './types';
-import { CLIENT_ID, REDIRECT_URI} from '../clientinfo'
+import { FETCH_USER } from './types';
+
 
 export const fetchUserData = () => async dispatch => {
   try {
@@ -16,14 +21,14 @@ export const fetchUserData = () => async dispatch => {
 
     if (userData){
       dispatch({
-        type: GET_USER,
+        type: FETCH_USER,
         payload: userData.data.data[0]
       })
     }
   } catch(error){
     console.log(error);
     dispatch({
-      type: GET_USER,
+      type: FETCH_USER,
       payload: {userId: 123,
         displayName: 'test',
         profileImage: ''}

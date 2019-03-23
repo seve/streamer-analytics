@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2';
+import { connect } from 'react-redux'
 import styled from 'styled-components/macro'
-import axios from 'axios';
-import queryString from 'query-string';
+import { fetchSubscribers } from '../actions/subscriberActions'
 
 const Chart = styled.div`
   margin-top: 32px;
@@ -32,33 +32,23 @@ const data = {
   }]
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user 
+  }
+}
 
+export default connect( mapStateToProps, { fetchSubscribers })( class SubscriberChart extends Component {
 
-export default class SubscriberChart extends Component {
+  mapDispatchToProps = () => {
+    return {
+      fetchSubscribers
+    }
+  }
 
-  componentDidMount = () => {
-    // GET: SUBSCRIBER COUNT
-      // NEW TWITCH API (MARCH 2019)
-      const getSubscribers= async () => {
-        try {
-            let subscribers = await axios.get(`https://ts-analytica-test.herokuapp.com/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
-          headers: {
-              Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
-            }
-          })
-  
-          if (subscribers){
-            console.log(subscribers)
-            return subscribers 
-          }
-        } catch(error){
-          console.log(error)
-        }
-      }
-  
-      setInterval(() => {
-        getSubscribers();
-      }, 1000 * 60 * 5);
+  componentWillMount = () => {
+    this.props.fetchSubscribers();
+    
   }
   
   render() {
@@ -68,4 +58,5 @@ export default class SubscriberChart extends Component {
       </Chart>
     )
   }
-}
+})
+

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components/macro'
-import axios from 'axios';
-import queryString from 'query-string';
 
 
 import logo from '../logo.svg'
@@ -68,6 +66,7 @@ export default connect( mapStateToProps, { fetchUserData })( class UserInfo exte
 
   componentWillMount = () => {
     this.props.fetchUserData();
+    
   }
   
   handleClick = async (e) => {
