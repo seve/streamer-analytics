@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components/macro'
+import axios from 'axios';
+import queryString from 'query-string';
 
 const Chart = styled.div`
   margin-top: 32px;
@@ -30,7 +32,34 @@ const data = {
   }]
 }
 
+
+
 export default class SubscriberChart extends Component {
+
+  componentDidMount = () => {
+    // GET: SUBSCRIBER COUNT
+      // NEW TWITCH API (MARCH 2019)
+      const getSubscribers= async () => {
+        try {
+            let subscribers = await axios.get(`https://ts-analytica-test.herokuapp.com/helix/subscriptions?broadcaster_id=${this.state.userId}`, {
+          headers: {
+              Authorization: `Bearer ${queryString.parse(document.location.hash).access_token}`
+            }
+          })
+  
+          if (subscribers){
+            console.log(subscribers)
+            return subscribers 
+          }
+        } catch(error){
+          console.log(error)
+        }
+      }
+  
+      setInterval(() => {
+        getSubscribers();
+      }, 1000 * 60 * 5);
+  }
   
   render() {
     return (
