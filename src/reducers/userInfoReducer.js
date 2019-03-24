@@ -3,7 +3,7 @@ import { FETCH_USER } from '../actions/types'
 
 
 const initialState = {
-  infro: {}
+  info: {},
 }
 
 export default (state = initialState, { type, payload }) => {

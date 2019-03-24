@@ -19,13 +19,11 @@ export const fetchSubscribers = () => async dispatch => {
       }
     })
 
-    console.log("HELLO")
-
     if (subscribers){
       console.log(subscribers)
       dispatch({
         type: FETCH_SUBSCRIBERS,
-        payload: subscribers.data.data
+        payload: subscribers.data
       })
     }
   } catch(error){
