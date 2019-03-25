@@ -115,12 +115,13 @@ export default connect( mapStateToProps, { fetchSubscribers })( class Subscriber
   }
   
   render() {
-    
+    if (this.props.user.info.id)
     return (
       <Chart>
         <Line options={this.options} data={this.data} ref={(ref) => this.chart = ref }/>
       </Chart>
     )
+    return <div/>
   }
 })
 
