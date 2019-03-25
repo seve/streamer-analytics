@@ -6,6 +6,7 @@ import styled from 'styled-components/macro'
 import logo from '../logo.svg'
 import {CLIENT_ID, REDIRECT_URI} from '../clientinfo'
 import { fetchUserData } from '../actions/userActions'
+import { COLORS } from '../colors'
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +23,7 @@ const mapStateToProps = (state) => {
   const Div = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #495264;
+    background-color: ${COLORS.BLUE};
     width: 300px;
     align-items: center;
     justify-items: center;
@@ -70,7 +71,7 @@ export default connect( mapStateToProps, { fetchUserData })( class UserInfo exte
   }
   
   handleClick = async (e) => {
-    window.open(`https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`, 'window')
+    window.open(`https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=channel:read:subscriptions`, '_self')
     
   } 
 
@@ -78,10 +79,12 @@ export default connect( mapStateToProps, { fetchUserData })( class UserInfo exte
 
 
   render(){
+    console.log(this.props.user.info.id !== undefined);
+    
     return <Div>
-      <Image src={this.props.user.profileImage ? this.props.user.profileImage : logo} className="profile-image" alt="profile"/>
-    {this.props.userId ?  
-      (<Name>{this.props.user.displayName}</Name>) 
+      <Image src={this.props.user.info.profile_image_url ? this.props.user.info.profile_image_url : logo} className="profile-image" alt="profile"/>
+    {this.props.user.info.id !== undefined ?  
+      (<Name>{this.props.user.info.display_name}</Name>) 
       : (<LoginButton onClick={ () => this.handleClick()}>Log In</LoginButton>)}
     </Div>;
   }

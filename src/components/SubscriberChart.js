@@ -2,24 +2,25 @@ import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2';
 import { connect } from 'react-redux'
 import styled from 'styled-components/macro'
+
 import { fetchSubscribers } from '../actions/subscriberActions'
+import {COLORS} from '../colors'
 
 const Chart = styled.div`
   margin-top: 32px;
-  background-color: #d6d6d6;
+  background-color: ${COLORS.LAVENDER};
+  /* background-color: #FFFFFF; */
   border-radius: 12px;
-  width: 500px;
+  width: 75%;
+  -webkit-box-shadow: 0px 10px 82px -7px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 82px -7px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 82px -7px rgba(0,0,0,0.75);
+
 `
 
-const options = {
-  scales: {
-    yAxes: [{
-      stacked: true
-    }]
-  }
-}
-
 const mapStateToProps = (state) => {
+  console.log(COLORS.BLUE);
+  
   return {
     user: state.user,
     subscribers: state.subscribers
@@ -31,16 +32,17 @@ export default connect( mapStateToProps, { fetchSubscribers })( class Subscriber
     labels: [],
     datasets: [
       {
-        label: 'My First dataset',
-        fill: false,
+        fontColor: 'black',
+        label: 'Subscribers',
+        fill: true,
         lineTension: 0.1,
-        backgroundColor: 'rgba(75,192,192,0.4)',
-        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: COLORS.BLUE ,
+        borderColor: COLORS.BLUE,
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
-        pointBorderColor: 'rgba(75,192,192,1)',
+        pointBorderColor: COLORS.BLUE,
         pointBackgroundColor: '#fff',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
@@ -50,10 +52,43 @@ export default connect( mapStateToProps, { fetchSubscribers })( class Subscriber
         pointRadius: 1,
         pointHitRadius: 10,
         data: []
-        // data: [0, 330]
       }
     ]
   };
+  
+  options = {
+    scales: {
+      yAxes: [{
+        stacked: true,
+        gridLines: {
+          color: COLORS.DARK_BLUE,
+        },
+        ticks: {
+          fontColor: COLORS.DARK_BLUE,
+        }
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: COLORS.DARK_BLUE,
+        },
+        gridLines: {
+          color: COLORS.DARK_BLUE,
+        }
+      }]
+    },
+    legend: {
+        display: true,
+        labels: {
+            fontColor: '#000'
+        }
+    },
+    title: {
+      display: 'true',
+      text: 'Subscribers Over Time',
+      fontColor: "#000"
+    }
+  }
+
 
 
   
@@ -83,7 +118,7 @@ export default connect( mapStateToProps, { fetchSubscribers })( class Subscriber
     
     return (
       <Chart>
-        <Line options={options} data={this.data} ref={(ref) => this.chart = ref }/>
+        <Line options={this.options} data={this.data} ref={(ref) => this.chart = ref }/>
       </Chart>
     )
   }
