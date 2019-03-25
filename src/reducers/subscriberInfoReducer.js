@@ -2,17 +2,17 @@
 import { FETCH_SUBSCRIBERS } from '../actions/types'
 
 const initialState = {
-   subscribers: []
+   users: [[]]
   
 }
 
 export default (state = initialState, { type, payload }) => {
-
+  
   switch (type) {
     case FETCH_SUBSCRIBERS:
+      state.users.push(payload)
       return {
-        ...state,
-        subscribers: state.subscribers.concat(payload)
+        users: state.users
       }
 
   default:

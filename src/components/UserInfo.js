@@ -78,8 +78,6 @@ export default connect( mapStateToProps, { fetchUserData })( class UserInfo exte
 
 
   render(){
-    console.log(this.props);
-
     return <Div>
       <Image src={this.props.user.profileImage ? this.props.user.profileImage : logo} className="profile-image" alt="profile"/>
     {this.props.userId ?  
