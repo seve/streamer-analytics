@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components/macro'
 
 
-import logo from '../logo.svg'
+import logo from '../logo.png'
 import {CLIENT_ID, REDIRECT_URI} from '../clientinfo'
 import { fetchUserData } from '../actions/userActions'
 import { COLORS } from '../colors'
