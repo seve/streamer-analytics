@@ -27,12 +27,6 @@ export const fetchUserData = () => async dispatch => {
     }
   } catch(error){
     console.log(error);
-    dispatch({
-      type: FETCH_USER,
-      payload: {userId: 123,
-        displayName: 'test',
-        profileImage: ''}
-    })
   }
 }
 
