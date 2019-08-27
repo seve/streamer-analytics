@@ -1,4 +1,4 @@
-# TS Analytica
+# Streamer Analytics
 ## Introduction
 A platform for streamers to view subscriber informaton. Things such as sub count, sub date will be viewable using d3. All relevent information will be queried from the Twitch API. 
 
