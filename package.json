@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://streamstats.seve.dev",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.8.0",
     "gh-pages": "^2.0.1",
     "query-string": "^6.4.0",
