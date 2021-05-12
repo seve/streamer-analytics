@@ -5,7 +5,7 @@
   "homepage": "https://streamstats.seve.dev",
   "dependencies": {
     "axios": "^0.18.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "gh-pages": "^2.0.1",
     "query-string": "^6.4.0",
     "react": "^16.8.4",
